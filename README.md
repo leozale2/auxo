@@ -3,8 +3,15 @@ mvc &amp; cqrs framework
 
 # Concept
 ## UIComponent
-## Model
++ support Vue component
++ support React component
 ## Page
++ View page
+## Model
++ provide data for Page or UIComponent
 ## Actor
-## Listener
++ business model
 ## Role
++ expand actor business function
+## Listener
++ handle business event
