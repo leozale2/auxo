@@ -1,20 +1,26 @@
 {
   "name": "auxo",
-  "version": "0.0.0",
-  "description": "mvc &amp; cqrs framework",
+  "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin": {
+    "auxo": "./cli.js"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/liangzeng/auxo.git"
+    "url": "git+https://github.com/liangzeng/vue-express.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/liangzeng/auxo/issues"
+    "url": "https://github.com/liangzeng/vue-express/issues"
   },
-  "homepage": "https://github.com/liangzeng/auxo#readme"
+  "homepage": "https://github.com/liangzeng/vue-express#readme",
+  "dependencies": {
+    "fs-extra": "^5.0.0"
+  }
 }

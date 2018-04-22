@@ -1,17 +1,15 @@
 # auxo
-mvc &amp; cqrs framework
+```
+npm i auxo --save-dev
+```
 
-# Concept
-## UIComponent
-+ support Vue component
-+ support React component
-## Page
-+ View page
-## Model
-+ provide data for Page or UIComponent
-## Actor
-+ business model
-## Role
-+ expand actor business function
-## Listener
-+ handle business event
+# use
+```
+auxo myproject
+cd myproject
+npm i
+npm dev run
+```
+
+#license
+MIT
