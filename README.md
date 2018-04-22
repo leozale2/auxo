@@ -3,7 +3,7 @@
 npm i auxo --save-dev
 ```
 
-# use
+# Use
 ```
 auxo myproject
 cd myproject
@@ -11,5 +11,5 @@ npm i
 npm dev run
 ```
 
-#license
+# License
 MIT
