@@ -13,7 +13,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require("./routes/index");
-var users = require("./routes/users");
 
 const app = express()
 const host = process.env.HOST || '127.0.0.1'
@@ -61,8 +60,14 @@ app.use(function (req,res,next) {
 });
 
 // Import API Routes
+const routersPath = path.join(__dirname, "routes");
 app.use('/', index);
-app.use('/users', users);
+
+readdirSync(routersPath)
+.filter(r=>(r!=='index.js' && /\.js$/.test(r)))
+.map(r=>r.substring(0,r.length-3))
+.forEach(r=>app.use('/'+r,require('./routes/'+r)));
+
 
 // Import and Set Nuxt.js options
 let config = require('../nuxt.config.js')

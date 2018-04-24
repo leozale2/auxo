@@ -24,7 +24,7 @@
     "express-cqrs": "^2.0.0",
     "express-session": "^1.15.6",
     "morgan": "~1.9.0",
-    "nuxt": "^1.0.0-rc3",
+    "nuxt": "^1.4.0",
     "serve-favicon": "~2.4.5",
     "source-map-support": "^0.4.15"
   },
