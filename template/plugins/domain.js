@@ -2,7 +2,7 @@ import axios from './axios';
 
 export default {
   async create(type, data) {
-    return (await axios.post(`/domain/${data}/create`, data)).data;
+    return (await axios.post(`/domain/${type}/create`, data)).data;
   },
 
   // @example
