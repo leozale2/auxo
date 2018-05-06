@@ -42,7 +42,7 @@ app.use(session({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-const actorPath = path.join(__dirname, "..", "actors");
+const actorPath = path.resolve(__dirname, "..", "actors");
 const domain = ExpressCqrs({
   app,
   actorPath
