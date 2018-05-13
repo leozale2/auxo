@@ -42,7 +42,7 @@ app.use(session({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-const actorPath = path.resolve(__dirname, "..", "actors");
+const actorPath = path.resolve("./actors");
 const domain = ExpressCqrs({
   app,
   actorPath
@@ -51,7 +51,6 @@ const {
   readdirSync
 } = require("fs");
 const actorNames = readdirSync(actorPath).filter(filename => /\.js$/.test(filename)).map(filename => filename.substring(0, filename.length - 3));
-console.log(actorNames);
 var dbs = require("cqrs-nedb-query")(domain, actorNames);
 
 app.use(function (req,res,next) {
@@ -60,7 +59,7 @@ app.use(function (req,res,next) {
 });
 
 // Import API Routes
-const routersPath = path.join(__dirname, "routes");
+const routersPath = path.join(__dirname,"routes");
 app.use('/', index);
 
 readdirSync(routersPath)
