@@ -1,4 +1,4 @@
-# auxo
+`# auxo
 ```
 npm i auxo --save-dev
 ```
