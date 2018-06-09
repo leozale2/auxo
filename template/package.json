@@ -15,7 +15,6 @@
     "axios": "^0.16.2",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
-    "cqrs": "^2.2.3",
     "cqrs-nedb-query": "^1.0.2",
     "cross-env": "^5.0.1",
     "debug": "~2.6.9",
