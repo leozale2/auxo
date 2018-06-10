@@ -1,5 +1,3 @@
-old_template
-# demo
 # Logs
 logs
 *.log
@@ -61,6 +59,3 @@ typings/
 
 # next.js build output
 .next
-
-
-test
