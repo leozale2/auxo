@@ -7,6 +7,7 @@ npm i auxo --save-dev
 ```
 mkdir myproject
 cd myproject
+npm i auxo --save-dev
 npx auxo .
 npm i
 npm dev run
