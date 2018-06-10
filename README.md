@@ -13,5 +13,12 @@ npm i
 npm dev run
 ```
 
+# update
+```
+cd myproject
+npm i auxo@latest --save-dev
+npx auxo -U
+```
+
 # License
 MIT

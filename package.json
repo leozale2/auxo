@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/liangzeng/vue-express#readme",
   "dependencies": {
-    "fs-extra": "^5.0.0"
+    "fs-extra": "^5.0.0",
+    "json-stringify-pretty-compact": "^1.2.0"
   }
 }

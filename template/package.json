@@ -18,7 +18,7 @@
     "cqrs-nedb-query": "^1.0.2",
     "cross-env": "^5.0.1",
     "debug": "~2.6.9",
-    "ejs": "~2.5.7",
+    "ejs": "2.5.7",
     "express": "^4.15.3",
     "express-cqrs": "^2.1.0",
     "express-session": "^1.15.6",
