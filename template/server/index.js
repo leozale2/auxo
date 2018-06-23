@@ -1,11 +1,15 @@
 const express = require("express");
+const https = require("https");
+const fs = require('fs');
+const svgCaptcha = require('svg-captcha');
+
+
 const {
   Nuxt,
   Builder
 } = require('nuxt');
 const ExpressCqrs = require("express-cqrs").default;
 const session = require("express-session");
-var svgCaptcha = require('svg-captcha');
 
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -14,7 +18,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require("./routes/index");
-var interceptor = require("./routes/interceptor");
 
 const app = express()
 const host = process.env.HOST || '127.0.0.1'
@@ -42,19 +45,10 @@ app.use(session({
     maxAge:200000
   }
 }));
-app.use("/",interceptor);
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/captcha', function (req, res) {
-	var captcha = svgCaptcha.create({noise: 1});
-	req.session.captcha = captcha.text;
-	res.type('svg');
-	res.status(200).send(captcha.data);
-});
-
 const actorPath = path.resolve("./actors");
-const domain = ExpressCqrs({
-  app,
+const {domain,router} = ExpressCqrs({
   actorPath
 });
 const {
@@ -65,18 +59,26 @@ var dbs = require("cqrs-nedb-query")(domain, actorNames);
 
 app.use(function (req,res,next) {
    req.dbs = dbs;
+   req.$domain = domain;
    next();
 });
 
 // Import API Routes
 const routersPath = path.join(__dirname,"routes");
 app.use('/', index);
-
+app.get('/captcha', function (req, res) {
+	var captcha = svgCaptcha.create({noise: 1});
+	req.session.captcha = captcha.text;
+	res.type('svg');
+	res.status(200).send(captcha.data);
+});
 readdirSync(routersPath)
-.filter(r=>(!['index.js','interceptor.js'].includes(r) && /\.js$/.test(r)))
+.filter(r=>(r!=='index.js' && /\.js$/.test(r)))
 .map(r=>r.substring(0,r.length-3))
 .forEach(r=>app.use('/'+r,require('./routes/'+r)));
 
+
+app.use(router);
 
 // Import and Set Nuxt.js options
 let config = require('../nuxt.config.js')
@@ -92,8 +94,7 @@ if (config.dev) {
 }
 
 // Give nuxt middleware to express
-app.use(nuxt.render)
+app.use(nuxt.render);
 
-// Listen the server
-app.listen(port, host)
-console.log('Server listening on ' + host + ':' + port) // eslint-disable-line no-console
+app.listen(port)
+console.log('Server listening on ' + host + ':' + port);
