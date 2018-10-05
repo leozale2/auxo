@@ -1,8 +1,8 @@
 const express = require("express");
-const https = require("https");
-const fs = require('fs');
 const svgCaptcha = require('svg-captcha');
-
+const {
+  readdirSync
+} = require("fs");
 
 const {
   Nuxt,
@@ -12,7 +12,6 @@ const ExpressCqrs = require("express-cqrs").default;
 const session = require("express-session");
 
 var path = require('path');
-var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -57,9 +56,7 @@ const {domain,router} = ExpressCqrs({
 
 bind(domain);
 
-const {
-  readdirSync
-} = require("fs");
+
 
 app.use(function (req,res,next) {
    req.dbs = dbs;

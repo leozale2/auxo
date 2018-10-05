@@ -44,6 +44,6 @@ if (isUpdate) {
   })();
 } else {
   fs.copy(path.join(__dirname, "template"), projectName, {
-    // filter: (src, dist) => !/node_modules/.test(src)
+    filter: (src, dist) => !/node_modules/.test(src)
   });
 }
