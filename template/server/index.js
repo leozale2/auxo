@@ -48,14 +48,18 @@ app.use(session({
 app.use(express.static(path.join(__dirname, 'public')));
 
 const actorPath = path.resolve("./actors");
+const actorNames = readdirSync(actorPath).filter(filename => /\.js$/.test(filename)).map(filename => filename.substring(0, filename.length - 3));
+var {dbs,bind} = require("cqrs-nedb-query")( actorNames);
+
 const {domain,router} = ExpressCqrs({
-  actorPath
+  actorPath,dbs
 });
+
+bind(domain);
+
 const {
   readdirSync
 } = require("fs");
-const actorNames = readdirSync(actorPath).filter(filename => /\.js$/.test(filename)).map(filename => filename.substring(0, filename.length - 3));
-var dbs = require("cqrs-nedb-query")(domain, actorNames);
 
 app.use(function (req,res,next) {
    req.dbs = dbs;
